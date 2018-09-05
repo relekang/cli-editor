@@ -1,6 +1,6 @@
 {
   "name": "@relekang/cli-editor",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": " An wrapper around the default terminal editor that can edit any object.",
   "main": "dist/index.js",
   "repository": "git@github.com:relekang/cli-editor.git",
