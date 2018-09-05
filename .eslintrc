@@ -1,0 +1,29 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+        "eslint:recommended",
+        "plugin:flowtype/recommended"
+    ],
+    "plugins": [
+        "prettier",
+        "flowtype"
+    ],
+    "env": {
+        "node": true
+    },
+    "globals": {
+        "Promise": false
+    },
+    "rules": {
+        "prettier/prettier": 2,
+        "no-unused-vars": [
+            2,
+            {
+                "vars": "all",
+                "args": "after-used",
+                "varsIgnorePattern": "^_",
+                "ignoreRestSiblings": true
+            }
+        ]
+    }
+}
