@@ -9,7 +9,8 @@
   "scripts": {
     "prepublishOnly": "yarn build && yarn flow-gen",
     "build": "babel -d dist src",
-    "flow-gen": "flow gen-flow-files src/index.js > dist/index.js.flow"
+    "flow-gen": "flow gen-flow-files src/index.js > dist/index.js.flow",
+    "release": "standard-version -i changelog.md"
   },
   "files": [
     "dist"
@@ -38,7 +39,8 @@
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-prettier": "^2.6.2",
     "flow-bin": "^0.80.0",
-    "prettier": "^1.14.2"
+    "prettier": "^1.14.2",
+    "standard-version": "^4.4.0"
   },
   "dependencies": {
     "js-yaml": "^3.12.0",
