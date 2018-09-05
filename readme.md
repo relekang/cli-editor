@@ -6,11 +6,11 @@ editor in the terminal. The editor is fetched with `EDITOR` environment variable
 ## Installation
 
 ```shell
-npm install cli-editor
+npm install @relekang/cli-editor
 ```
 or
 ```shell
-yarn add cli-editor
+yarn add @relekang/cli-editor
 ```
 
 ## Usage
