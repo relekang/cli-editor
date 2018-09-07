@@ -21,6 +21,9 @@ import {edit} from "@relekang/cli-editor"
 edit({
     fetch: async function() { return getItem() },
     save: async function(item) { return saveItem(item) },
+    errorHandler: function (error) {
+        return {retry: true, message: "Could not save due to " + error.toString()}
+    },
 })
 .catch(error => console.error("ooops", error))
 ```

@@ -6,6 +6,7 @@ import path from "path";
 import mkdirp from "mkdirp";
 import yaml from "js-yaml";
 import omit from "lodash.omit";
+import Prompt from "prompt-confirm";
 
 const mkdirpAsync = promisify(mkdirp);
 const writeFile = promisify(fs.writeFile);
@@ -40,12 +41,14 @@ function parseTmpFile(file, contentKey) {
 type EditOptions<Item> = {
   fetch: Function,
   save: Function,
+  errorHandler: Function,
   getContentKey?: (item: Item) => string
 };
 
 export async function edit<Item>({
   fetch,
   save,
+  errorHandler,
   getContentKey
 }: EditOptions<Item>) {
   await mkdirpAsync(tmpFolder);
@@ -74,7 +77,22 @@ export async function edit<Item>({
         resolve(response);
       } catch (error) {
         error.pathToFile = tmpPath;
-        reject(error);
+        const handlerResponse = await errorHandler(error);
+        if (handlerResponse.retry) {
+          // eslint-disable-next-line no-console
+          console.error(handlerResponse.message);
+          const retry = await new Prompt("Do you want to retry?").run();
+          if (retry) {
+            await edit({
+              fetch,
+              save,
+              errorHandler,
+              getContentKey
+            }).catch(reject);
+          }
+        } else {
+          reject(error);
+        }
       }
     });
   });

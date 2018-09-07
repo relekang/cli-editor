@@ -40,11 +40,13 @@
     "eslint-plugin-prettier": "^2.6.2",
     "flow-bin": "^0.80.0",
     "prettier": "^1.14.2",
-    "standard-version": "^4.4.0"
+    "standard-version": "^4.4.0",
+    "yn": "^2.0.0"
   },
   "dependencies": {
     "js-yaml": "^3.12.0",
     "lodash.omit": "^4.5.0",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "prompt-confirm": "^2.0.4"
   }
 }
