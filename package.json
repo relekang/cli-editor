@@ -7,8 +7,8 @@
   "author": "Rolf Erik Lekang <me@rolflekang.com>",
   "license": "MIT",
   "scripts": {
-    "prepublishOnly": "yarn build && yarn flow-gen",
-    "build": "babel -d dist src",
+    "prepublishOnly": "yarn build",
+    "build": "babel -d dist src && yarn flow-gen",
     "flow-gen": "flow gen-flow-files src/index.js > dist/index.js.flow",
     "release": "standard-version -i changelog.md"
   },

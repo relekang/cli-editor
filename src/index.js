@@ -38,19 +38,26 @@ function parseTmpFile(file, contentKey) {
   return output;
 }
 
+type ErrorHandlerResult = {
+  retry: boolean,
+  message: string
+};
+
 type EditOptions<Item> = {
-  fetch: Function,
-  save: Function,
-  errorHandler: Function,
+  fetch: () => Promise<Item>,
+  save: (item: Item) => Promise<Item>,
+  errorHandler: (
+    error: typeof Error
+  ) => Promise<ErrorHandlerResult> | ErrorHandlerResult,
   getContentKey?: (item: Item) => string
 };
 
-export async function edit<Item>({
+export async function edit<Item: Object>({
   fetch,
   save,
   errorHandler,
   getContentKey
-}: EditOptions<Item>) {
+}: EditOptions<Item>): Promise<Item> {
   await mkdirpAsync(tmpFolder);
   const tmpPath = path.join(tmpFolder, randomInt().toString() + ".yml");
 
